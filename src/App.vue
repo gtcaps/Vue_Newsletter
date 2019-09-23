@@ -2,7 +2,7 @@
   <div id="app">
     <Menu></Menu>
     <router-view/>
-    
+    <PiePagina></PiePagina>
   </div>
 </template>
 
@@ -10,10 +10,12 @@
 
 <script>
 import Menu from '@/components/Menu.vue'
+import PiePagina from '@/components/PiePagina.vue'
 
 export default {
   components:{
-    Menu
+    Menu,
+    PiePagina
   }
 }
 </script>
@@ -25,6 +27,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  min-height: 100vh;
 }
 #nav {
   padding: 30px;
@@ -38,4 +41,5 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
 </style>
