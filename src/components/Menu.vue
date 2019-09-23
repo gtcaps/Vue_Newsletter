@@ -16,7 +16,7 @@
       </li>
       <li class="nav-item" v-for="a in tags" :key="a.id">
         <router-link
-          to="/about"
+          to="/categorie"
           class="nav-link item-styles"
           @click.native="hola(a.id)"
           :class="clicked == a.id ? 'selection' : ''"
@@ -37,8 +37,7 @@ export default {
   methods: {
     getData() {
       const url = process.env.VUE_APP_API + "/tags";
-      axios
-        .get(url)
+      axios.get(url)
         .then(response => {
           this.tags = response.data;
         })
@@ -49,6 +48,7 @@ export default {
 
     hola(selectedItem) {
       this.clicked = selectedItem;
+      this.$router.push();
     }
   },
 
