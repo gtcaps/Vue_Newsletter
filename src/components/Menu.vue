@@ -16,7 +16,7 @@
       </li>
       <li class="nav-item" v-for="a in tags" :key="a.id">
         <router-link
-          to="/categorie"
+          :to="'/categorie/' + a.slug"
           class="nav-link item-styles"
           @click.native="hola(a.id)"
           :class="clicked == a.id ? 'selection' : ''"
@@ -48,7 +48,6 @@ export default {
 
     hola(selectedItem) {
       this.clicked = selectedItem;
-      this.$router.push();
     }
   },
 

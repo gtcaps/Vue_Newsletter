@@ -22,7 +22,7 @@ export default new Router({
     },
 
     {
-      path: '/categorie',
+      path: '/categorie/:slug',
       component: Categorie
     }
 
