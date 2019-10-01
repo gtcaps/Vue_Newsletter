@@ -5,8 +5,7 @@
 
         <div class="card-container d-flex flex-wrap justify-content-around">
             <Card   
-                v-for="a in arr" 
-                v-if="a.slug == `${categorie}` & a.subscribed >= Number(a.target)"  
+                v-for="a in data"
                 :key="a.id" 
                 :titulo ="a.title" 
                 :ruta="a.image" 
@@ -22,8 +21,8 @@
         <div class="card-container d-flex flex-wrap justify-content-around">
             <!--v-if="a.subscribed < Number(a.target)"-->
             <VoteCard   
-                v-for="a in arr" 
-                v-if="a.slug == `${categorie}` & a.subscribed < Number(a.target)"  
+                v-for="a in data" 
+                v-if="a.subscribed < Number(a.target)"  
                 :key="a.id" 
                 :titulo ="a.title" 
                 :ruta="a.image" 
@@ -63,105 +62,7 @@ export default {
   data: () => {
     return {
       data: [],
-      categorie: "",
-      arr: [
-              {
-                  image: "https://images.pexels.com/photos/2917442/pexels-photo-2917442.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                  title: "Web Development",
-                  description: "Passage its ten led hearted removal cordial. Preference any astonished unreserved mrs. .",
-                  subscribed: 200,
-                  target: "100",
-                  slug: "tecnologia"
-              },
-              {
-                  image: "https://images.pexels.com/photos/830891/pexels-photo-830891.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                  title: "Android Development",
-                  description: "Passage its ten led hearted removal cordial. Preference any astonished unreserved mrs. .",
-                  subscribed: 100,
-                  target: "200",
-                  slug: "tecnologia"
-              },
-              {
-                  image: "https://images.pexels.com/photos/373076/pexels-photo-373076.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                  title: "IOS Development",
-                  description: "Passage its ten led hearted removal cordial. Preference any astonished unreserved mrs. .",
-                  subscribed: 99,
-                  target: "0",
-                  slug: "negocios"
-              },
-              {
-                  image: "https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                  title: "React Development",
-                  description: "Passage its ten led hearted removal cordial. Preference any astonished unreserved mrs. .",
-                  subscribed: 50,
-                  target: "100",
-                  slug: "negocios"
-              },
-              {
-                  image: "https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                  title: "Software Development",
-                  description: "Passage its ten led hearted removal cordial. Preference any astonished unreserved mrs. .",
-                  subscribed: 180,
-                  target: "100",
-                  slug: "politica"
-              },
-              {
-                  image: "https://images.pexels.com/photos/1482476/pexels-photo-1482476.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                  title: "Vue Development",
-                  description: "Passage its ten led hearted removal cordial. Preference any astonished unreserved mrs. .",
-                  subscribed: 50,
-                  target: "100",
-                  slug: "politica"
-              },
-              {
-                  image: "https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                  title: "Java EE",
-                  description: "Passage its ten led hearted removal cordial. Preference any astonished unreserved mrs. .",
-                  subscribed: 20,
-                  target: "100",
-                  slug: "entretenimiento"
-              },
-              {
-                  image: "https://images.pexels.com/photos/842554/pexels-photo-842554.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                  title: "JAVA SE",
-                  description: "Passage its ten led hearted removal cordial. Preference any astonished unreserved mrs. .",
-                  subscribed: 120,
-                  target: "100",
-                  slug: "entretenimiento"
-              },
-              {
-                  image: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                  title: "Data Structures",
-                  description: "Passage its ten led hearted removal cordial. Preference any astonished unreserved mrs. .",
-                  subscribed: 40,
-                  target: "100",
-                  slug: "deportes"
-              },
-              {
-                  image: "https://images.pexels.com/photos/1626481/pexels-photo-1626481.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                  title: "Algorithms",
-                  description: "Passage its ten led hearted removal cordial. Preference any astonished unreserved mrs. .",
-                  subscribed: 190,
-                  target: "100",
-                  slug: "deportes"
-              },
-              {
-                  image: "https://images.pexels.com/photos/2918011/pexels-photo-2918011.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                  title: "Computational Thinking",
-                  description: "Passage its ten led hearted removal cordial. Preference any astonished unreserved mrs. .",
-                  subscribed: 160,
-                  target: "100",
-                  slug: "tecnologia"
-              },
-              {
-                  image: "https://images.pexels.com/photos/2922379/pexels-photo-2922379.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-                  title: "Internet of Things",
-                  description: "Passage its ten led hearted removal cordial. Preference any astonished unreserved mrs. .",
-                  subscribed: 400,
-                  target: "100",
-                  slug: "deportes"
-              }
-          ]
+      categorie: ""
     };
   },
 
@@ -170,7 +71,13 @@ export default {
       this.categorie = this.$route.params.slug;
       this.getData();
     }
+  },
+
+  created(){
+    this.categorie = this.$route.params.slug;
+    this.getData();
   }
+
 };
 </script>
 
