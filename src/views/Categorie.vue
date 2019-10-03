@@ -10,6 +10,7 @@
                 :titulo ="a.title" 
                 :ruta="a.image" 
                 :descripcion="a.description"
+                :news_id="a.id"
                 ></Card>
         </div>
 

@@ -26,12 +26,17 @@ export default {
   props: {
     titulo: String,
     ruta: String,
-    descripcion: String
+    descripcion: String,
+    news_id: String
   },
 
   data: () =>{
     return {
-      correo : ""
+      correo : "",
+      subscribed_info: {
+        email : '',
+        newsletter_id : 0
+      }
     }
   },
 
@@ -63,7 +68,22 @@ export default {
 
         if (email) {
           Swal.fire(email + " subscribed to : " + t);
-          this.correo = email;
+          this.subscribed_info.email = email;
+          this.subscribed_info.newsletter_id = Number(this.news_id);
+          console.log(this.subscribed_info);
+
+
+          const url = process.env.VUE_APP_API + '/users';
+          
+          axios.post(url,this.subscribed_info)
+            .then(response => {
+              console.log(response.data);
+            })
+            .catch(error => {
+              console.log("Hubo un error en la conexion a la API");
+            })
+
+
         }
       })()
     }
